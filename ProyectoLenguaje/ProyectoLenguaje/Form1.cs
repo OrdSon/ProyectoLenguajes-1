@@ -36,5 +36,11 @@ namespace ProyectoLenguaje
             Analizador analizador = new Analizador();
             analizador.colorearSymbolos(textBox);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox.SelectAll();
+            textBox.SelectionColor = Color.Black;
+        }
     }
 }
