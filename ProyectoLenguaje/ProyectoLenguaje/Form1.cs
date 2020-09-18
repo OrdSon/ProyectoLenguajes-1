@@ -33,9 +33,8 @@ namespace ProyectoLenguaje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int variable = 2;
-            textBox.Select(variable, 1);
-            textBox.SelectionColor = Color.Red;
+            Analizador analizador = new Analizador();
+            analizador.colorearSymbolos(textBox);
         }
     }
 }
