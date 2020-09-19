@@ -34,13 +34,14 @@ namespace ProyectoLenguaje
         private void button1_Click(object sender, EventArgs e)
         {
             Analizador analizador = new Analizador();
-            analizador.colorearSymbolos(textBox);
+            analizador.analizar(textBox);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             textBox.SelectAll();
             textBox.SelectionColor = Color.Black;
+
         }
     }
 }

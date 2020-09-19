@@ -16,13 +16,20 @@ namespace ProyectoLenguaje
         private LinkedList<Token> salida;
         private int estado;
         String auxiliar;
-        public void colorearSymbolos(RichTextBox textBox)
+        public void analizar(RichTextBox textBox)
         {
             String texto = textBox.Text;
             String exp1= "00021310321 ++++++++++++ + ++";
             String exp2 = "123120123";
-            String prueba = "\"([^\"]*)\" | \'([^\']*)\'";
-            Regex regex = new Regex(prueba);
+            String expresionCadenas = "^\"[^\"]*\"$";
+            String expresionNumeros = "^(0|([1-9]+[0-9]*))$";
+            String expresionCharts = "'.?'";
+            String expresionAritmetica = "^(\\+\\+?)$|^(\\-\\-?)$|^(\\*)$|^(\\/)$";
+            String expresionRelacional = "^(\\<|\\>)\\=?$|^(\\=|\\!)\\=$";
+            String expresionLogica = "^(\\|){1,2}$|^(\\&){1,2}$|^(\\!)$";
+            String expresionIdentificador = "^[a-zA-Z1-9-_]*$";
+
+            Regex regex = new Regex(expresionIdentificador);
             MatchCollection match = regex.Matches(texto);
             foreach(Match e in match){
                 if (match.Count > 0)
