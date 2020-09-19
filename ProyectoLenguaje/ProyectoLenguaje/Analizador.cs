@@ -28,22 +28,8 @@ namespace ProyectoLenguaje
         Regex regexIdentificador = new Regex("^[a-zA-Z1-9-_]*$");
         Regex regexReservadas = new Regex("^(SI)(NO)?(_SI)?$|^(MIENTRAS)$|^(HACER)$|^(PARA)$|^(HASTA)$|^(DESDE)$|^(INCREMENTO)$");
         Regex regexTipoObjeto = new Regex("^(Entero)$|^(Decimal)$|^(Cadena)$|^(Boolean)$|^(Chart)$");
+        Regex simbolos = new Regex("^(\\()(\\))?$|^(\\))$|^(\\=)$");
 
-        public void colorear (TextBox textBox)
-        {
-            MatchCollection cadenasEncontradas = regexCadenas.Matches(textBox.Text);
-            MatchCollection enterosEncontrados = regexEnteros.Matches(textBox.Text);
-            MatchCollection booleanEncontradas = regexBoolean.Matches(textBox.Text);
-            MatchCollection decimalesEncontradas = regexDecimal.Matches(textBox.Text);
-            MatchCollection chartsEncontradas = regexChart.Matches(textBox.Text);
-            MatchCollection aritmeticasEncontradas = regexAritmetica.Matches(textBox.Text);
-            MatchCollection relacionalEncontradas = regexRelacional.Matches(textBox.Text);
-            MatchCollection logicaEncontradas = regexLogica.Matches(textBox.Text);
-            MatchCollection identificadoresEncontrados = regexIdentificador.Matches(textBox.Text);
-            MatchCollection reservadasEncontradas = regexReservadas.Matches(textBox.Text);
-            MatchCollection tiposEncontrados = regexTipoObjeto.Matches(textBox.Text);
-           
-        }
         public void analizar(RichTextBox textBox)
             {
             tokens = new LinkedList<Token>();
@@ -54,6 +40,7 @@ namespace ProyectoLenguaje
                 MessageBox.Show("Sin texto que analizar");
                 return;
             }
+            
             for(int i = 0; i < textBox.Lines.Length; i++)
             {
                 String [] linea = textBox.Lines[i].Split(separadores, System.StringSplitOptions.RemoveEmptyEntries);
@@ -105,13 +92,21 @@ namespace ProyectoLenguaje
                         tipo = Token.Tipo.IDENTIFICADOR;
                         colorear(valor, textBox, Color.DarkGray);
                     }
-                    
+                     else if (valor.Contains("\""))
+                    {
+                        break;
+                    }else if (valor.Contains("'"))
+                    {
+                        break;
+                    }
                     else
                     {
                         tipo = Token.Tipo.ERROR;
                     }
                     tokens.AddLast(new Token(tipo, valor, (i+1)));
+
                 }
+                
             }
 
             MatchCollection cadenasEncontradas = regexCadenas.Matches(textBox.Text);
@@ -128,7 +123,30 @@ namespace ProyectoLenguaje
                 textBox.Select(e.Index, e.Length);
                 textBox.SelectionColor = Color.Yellow;
             }
+            MatchCollection simbolosEncontrados = simbolos.Matches(textBox.Text);
+            foreach (Match e in simbolosEncontrados)
+            {
+                tokens.AddLast(new Token(Token.Tipo.DECLARACION, e.Value, e.Index));
+                textBox.Select(e.Index, e.Length);
+                textBox.SelectionColor = Color.Pink;
+            }
+            int contador = 0;
+            LinkedList<String> errores = new LinkedList<string>();
+            for (int t = 0; t < tokens.Count; t++)
+            {
+                if (tokens.ElementAt<Token>(t).getTipo().Equals("ERROR"))
+                {
+                    errores.AddLast("ERROR " + tokens.ElementAt<Token>(t).getValor() + " en linea" +
+                        tokens.ElementAt<Token>(t).getLinea());
+                    contador++;
+                }
+            }
 
+            if (contador > 0)
+            {
+                Error error = new Error(errores);
+                error.Visible = true;
+            }
         }
         private void colorear(String valor, RichTextBox textBox, Color color)
         {

@@ -45,6 +45,11 @@ namespace ProyectoLenguaje
             return valor;
         }
 
+        public String getLinea()
+        {
+            return linea + "";
+        }
+
         public string getTipo()
         {
             switch(tipoToken){
