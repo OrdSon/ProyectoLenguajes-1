@@ -33,10 +33,13 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.fuentes = new System.Windows.Forms.FontDialog();
+            this.tipografiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colores = new System.Windows.Forms.ColorDialog();
+            this.erroresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,11 +47,10 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.fuenteToolStripMenuItem,
-            this.opcionesToolStripMenuItem});
+            this.fuenteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(653, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,7 +58,8 @@
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirToolStripMenuItem,
-            this.guardarToolStripMenuItem});
+            this.guardarToolStripMenuItem,
+            this.erroresToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.archivoToolStripMenuItem.Text = "Archivo";
@@ -64,28 +67,25 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.guardarToolStripMenuItem.Text = "Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // fuenteToolStripMenuItem
             // 
+            this.fuenteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tipografiaToolStripMenuItem,
+            this.colorToolStripMenuItem});
             this.fuenteToolStripMenuItem.Name = "fuenteToolStripMenuItem";
             this.fuenteToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.fuenteToolStripMenuItem.Text = "Fuente";
-            // 
-            // opcionesToolStripMenuItem
-            // 
-            this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.opcionesToolStripMenuItem.Text = "Opciones";
             // 
             // textBox
             // 
@@ -93,25 +93,47 @@
             this.textBox.Font = new System.Drawing.Font("MS PGothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox.Location = new System.Drawing.Point(0, 24);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(653, 623);
+            this.textBox.Size = new System.Drawing.Size(710, 539);
             this.textBox.TabIndex = 1;
             this.textBox.Text = "";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(195, 1);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button1.Location = new System.Drawing.Point(139, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(141, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Compilar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tipografiaToolStripMenuItem
+            // 
+            this.tipografiaToolStripMenuItem.Name = "tipografiaToolStripMenuItem";
+            this.tipografiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tipografiaToolStripMenuItem.Text = "Tipografia";
+            this.tipografiaToolStripMenuItem.Click += new System.EventHandler(this.tipografiaToolStripMenuItem_Click);
+            // 
+            // colorToolStripMenuItem
+            // 
+            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorToolStripMenuItem.Text = "Color";
+            this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
+            // 
+            // erroresToolStripMenuItem
+            // 
+            this.erroresToolStripMenuItem.Name = "erroresToolStripMenuItem";
+            this.erroresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.erroresToolStripMenuItem.Text = "Errores";
+            this.erroresToolStripMenuItem.Click += new System.EventHandler(this.erroresToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 647);
+            this.ClientSize = new System.Drawing.Size(710, 563);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.menuStrip1);
@@ -132,10 +154,13 @@
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fuenteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.RichTextBox textBox;
-        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.FontDialog fuentes;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem tipografiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colores;
+        private System.Windows.Forms.ToolStripMenuItem erroresToolStripMenuItem;
     }
 }
 

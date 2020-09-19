@@ -25,5 +25,18 @@ namespace ProyectoLenguaje
                 textBoxErrores.ScrollToCaret();
             }
         }
+
+        private void guardarErroresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManagerArchivos manager = new ManagerArchivos();
+            manager.Guardar(sender, e,textBoxErrores,this, "gtE");
+        }
+
+        private void verErroresAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBoxErrores.Clear();
+            ManagerArchivos manager = new ManagerArchivos();
+            manager.Abrir(sender, e, textBoxErrores, this, "gtE");
+        }
     }
 }
